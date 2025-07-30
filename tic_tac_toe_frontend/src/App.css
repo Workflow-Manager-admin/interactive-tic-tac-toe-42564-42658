@@ -1,104 +1,276 @@
-/* CSS Variables for Theme Management */
+/* Theme Variables for Modern Light Style */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --color-primary: #1E90FF;
+  --color-accent: #FFD700;
+  --color-secondary: #333333;
+  --color-bg: #fff;
+  --color-board: #f7fbff;
+  --color-outline: #E3ECF7;
+  --color-shadow: rgba(30, 144, 255, 0.1);
+  --text-main: #222;
+  --ttt-x: var(--color-primary);
+  --ttt-o: var(--color-accent);
+  --ttt-dim: #aaa;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
-}
-
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+.ttt-app-bg {
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: var(--color-bg);
+  color: var(--text-main);
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  transition: background .35s;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Main centered layout */
+.ttt-main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1050px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 32px 8px 0 8px;
+  gap: 44px;
+  flex: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+.ttt-board-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  min-width: 334px;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.ttt-title {
+  font-weight: 900;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  margin: 1.2em 0 0.6em 0;
+  color: var(--color-primary);
+  text-shadow: 0 3px 8px var(--color-shadow);
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
+.ttt-board-area {
+  background: var(--color-board);
+  border-radius: 1.5em;
+  padding: 2.5em 2.2em 1.6em;
+  box-shadow: 0 4px 32px 0 var(--color-shadow);
+  min-width: 320px;
+  margin-bottom: 24px;
+}
+
+.ttt-status-bar {
+  font-size: 1.25rem;
   font-weight: 600;
+  margin-bottom: 18px;
+  min-height: 32px;
+  color: var(--color-secondary);
+  text-align: center;
+}
+.ttt-status-win {
+  color: var(--color-accent);
+  font-weight: 800;
+  font-size: 1.2em;
+}
+.ttt-status-draw { color: var(--color-primary); font-weight: 700; }
+
+.ttt-board-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ttt-board-row {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+.ttt-square {
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  border: 2.5px solid var(--color-outline);
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--color-secondary);
+  outline: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px 0 var(--color-shadow);
+  transition: background .15s, box-shadow .25s;
+  user-select: none;
+  margin-bottom: 0;
+  display: grid;
+  place-items: center;
+}
+.ttt-square:active {
+  background: var(--color-primary);
+  color: #fff;
+}
+.ttt-x {
+  color: var(--ttt-x) !important;
+  text-shadow: 0 1px 8px #c1e5ff;
+}
+.ttt-o {
+  color: var(--ttt-o) !important;
+  text-shadow: 0 1px 8px #fbf1c0;
+}
+.ttt-player-x {
+  color: var(--color-primary);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.ttt-player-o {
+  color: var(--color-accent);
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.ttt-newgame-btn {
+  margin-top: 16px;
+  appearance: none;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  padding: 10px 38px;
+  border-radius: 1em;
+  font-weight: 700;
+  box-shadow: 0 2px 14px var(--color-shadow);
+  cursor: pointer;
+  transition: background .2s;
+}
+.ttt-newgame-btn:hover,
+.ttt-newgame-btn:focus {
+  background: #136cd1;
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.ttt-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  min-width: 256px;
+  max-width: 310px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Session/Game History */
+.ttt-history {
+  background: #fff;
+  border-radius: .8em;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  padding: 18px 18px 12px 18px;
+  margin-bottom: 8px;
+  min-height: 120px;
+}
+.ttt-history h3 {
+  margin-top: 0;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.2em;
+}
+.ttt-history-empty {
+  color: var(--ttt-dim);
+  text-align: center;
+  padding: 6px;
+}
+.ttt-hist-item {
+  display: inline-block;
+  color: var(--color-secondary);
+  font-size: 1em;
+}
+.ttt-hist-timestamp {
+  font-size: 0.87em;
+  color: var(--ttt-dim);
+  margin-left: 8px;
+  font-style: italic;
+}
+
+/* Mini "readonly" boards for history */
+.ttt-mini-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1em);
+  grid-template-rows: repeat(3, 1em);
+  gap: 2px;
+  margin: 3px 0 6px 2px;
+}
+.ttt-mini-cell {
+  width: 1.15em;
+  height: 1.15em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f5fa;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 0.98em;
+  color: var(--ttt-dim);
+  border: 1.3px solid #e0e0e0;
+}
+.mini-X { color: var(--ttt-x); }
+.mini-O { color: var(--ttt-o); }
+
+.ttt-info-panel {
+  margin-top: 14px;
+  background: #fcfcfc;
+  border-radius: .65em;
+  box-shadow: 0 1px 6px var(--color-shadow);
+  padding: 14px 18px 10px 18px;
+  color: var(--color-secondary);
+  font-size: 0.98em;
+}
+.ttt-info-panel h3 { margin-top: 0; color: var(--color-secondary); }
+.ttt-info-panel ul {
+  margin: 0 0 0 18px;
+  padding: 0;
+  color: #666;
+}
+
+.ttt-footer {
+  font-size: 0.94em;
+  color: var(--ttt-dim);
+  text-align: center;
+  margin: 0.7em 0 0.9em 0;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 850px) {
+  .ttt-main-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 2vw 0 2vw;
+    gap: 20px;
   }
-  to {
-    transform: rotate(360deg);
+  .ttt-sidebar {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 100vw;
+    min-width: 0;
+    gap: 18px;
+    margin-bottom: 20px;
   }
+  .ttt-board-column { min-width: 0; }
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+@media (max-width: 600px) {
+  .ttt-app-bg {
+    font-size: 15px;
+    padding: 0;
   }
+  .ttt-main-container {
+    padding: 10px 0 0 0;
+    gap: 10px;
+  }
+  .ttt-board-area {
+    min-width: 96vw;
+    padding: 1.1em 0.1em 0.8em;
+    margin-bottom: 14px;
+  }
+  .ttt-title { font-size: 1.5rem; margin-bottom: .4em; }
+  .ttt-newgame-btn { font-size: 1em; padding: 8px 22px;}
+  .ttt-sidebar { flex-direction: column; min-width: 0; max-width: 95vw; gap: 16px;}
+  .ttt-info-panel, .ttt-history { min-width: 0; padding: 11px 5vw 5px 5vw; box-shadow: 0 1px 4px var(--color-shadow);}
 }
+
